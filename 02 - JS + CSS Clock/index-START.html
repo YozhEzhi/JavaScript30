@@ -2,72 +2,106 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+
   <title>JS + CSS Clock</title>
-</head>
-<body>
-
-
-    <div class="clock">
-      <div class="clock-face">
-        <div class="hand hour-hand"></div>
-        <div class="hand min-hand"></div>
-        <div class="hand second-hand"></div>
-      </div>
-    </div>
-
 
   <style>
     html {
-      background:#018DED url(http://unsplash.it/1500/1000?image=881&blur=50);
-      background-size:cover;
-      font-family:'helvetica neue';
-      text-align: center;
+      background: #018DED;
+      font-family: 'helvetica neue', sans-serif;
       font-size: 10px;
+      text-align: center;
     }
 
     body {
-      font-size: 2rem;
-      display:flex;
-      flex:1;
-      min-height: 100vh;
       align-items: center;
+      display: flex;
+      flex: 1;
+      font-size: 2rem;
+      min-height: 100vh;
     }
 
     .clock {
       width: 30rem;
       height: 30rem;
-      border:20px solid white;
-      border-radius:50%;
-      margin:50px auto;
+      border: 20px solid white;
+      border-radius: 50%;
+      margin: 50px auto;
+      opacity: 0;
       position: relative;
-      padding:2rem;
-      box-shadow:
-        0 0 0 4px rgba(0,0,0,0.1),
-        inset 0 0 0 3px #EFEFEF,
-        inset 0 0 10px black,
-        0 0 10px rgba(0,0,0,0.2);
+      padding: 2rem;
+      transition: opacity 1s ease;
+      box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1),
+      inset 0 0 0 3px #EFEFEF,
+      inset 0 0 10px black,
+      0 0 10px rgba(0, 0, 0, 0.2);
     }
 
     .clock-face {
-      position: relative;
-      width: 100%;
       height: 100%;
+      position: relative;
       transform: translateY(-3px); /* account for the height of the clock hands */
+      width: 100%;
     }
 
     .hand {
-      width:50%;
-      height:6px;
-      background:black;
+      background: black;
+      height: 50%;
+      left: 50%;
       position: absolute;
-      top:50%;
+      top: 0;
+      transform-origin: bottom;
+      transition: all 0.05s;
+      transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+      width: 6px;
     }
 
+    .min-hand {
+      z-index: 1;
+    }
+
+    .hour-hand {
+      height: 35%;
+      top: 15%;
+      z-index: 2;
+    }
+
+    .second-hand {
+      width: 4px;
+      z-index: 3;
+    }
   </style>
+</head>
+<body>
+<div class="clock">
+  <div class="clock-face">
+    <div class="hand hour-hand"></div>
+    <div class="hand min-hand"></div>
+    <div class="hand second-hand"></div>
+  </div>
+</div>
 
-  <script>
+<script>
+  function getTimeAngles() {
+    const date = new Date();
 
+    return {
+      hour: date.getHours() * 5 * 6,
+      min: date.getMinutes() * 6,
+      second: date.getSeconds() * 6,
+    };
+  }
 
-  </script>
+  function setStyles() {
+    const timeAngles = getTimeAngles();
+
+    Object.keys(timeAngles).forEach((key) => {
+      document.querySelector(`.${key}-hand`).style.transform = `rotate(${timeAngles[key]}deg)`;
+    });
+  }
+
+  setTimeout(() => document.querySelector('.clock').style.opacity = 1, 1000);
+  setInterval(() => setStyles(), 1000);
+</script>
 </body>
 </html>
