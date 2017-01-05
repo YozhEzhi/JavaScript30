@@ -31,6 +31,34 @@
   </style>
 
 <script>
+  const hero = document.querySelector('.hero');
+  const target = hero.querySelector('h1');
+  const walkIndex = 500;
+
+  function moveShadow(event) {
+    const { offsetWidth: width, offsetHeight: height } = hero;
+    let { offsetX: x, offsetY: y } = event;
+
+    // We use this because when mouse goes on target - offsetLeft & offsetTop
+    // will be calculated relatively from target (not from window).
+    if (this !== event.target) {
+      x = x + event.target.offsetLeft;
+      y = y + event.target.offsetTop;
+    }
+
+    // Get the range between `walkIndex` 500 -> -250...+250.
+    const xWalk = Math.round((x / width * walkIndex) - (walkIndex / 2));
+    const yWalk = Math.round((y / height * walkIndex) - (walkIndex / 2));
+
+    target.style.textShadow = `
+      ${xWalk}px      ${yWalk}px      red,
+      ${xWalk * -1}px ${yWalk}px      green,
+      ${yWalk}px      ${xWalk * -1}px gold,
+      ${yWalk * -1}px ${xWalk * -1}px pink
+    `;
+  }
+
+  document.addEventListener('mousemove', moveShadow);
 </script>
 </body>
 </html>
