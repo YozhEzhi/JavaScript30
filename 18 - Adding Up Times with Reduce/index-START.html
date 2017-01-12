@@ -174,14 +174,35 @@
     <li data-time="12:39">
       Video 56
     </li>
-    <li data-time="1:56">
+    <li data-time="1:06">
       Video 57
     </li>
     <li data-time="4:04">
       Video 58
     </li>
-
 <script>
+  const items = Array.from(document.querySelectorAll('[data-time]'));
+
+  const seconds = items
+    .map(node => node.dataset.time)
+    .map(timeCode => {
+      const [mins, secs] = timeCode.split(':').map(parseFloat);
+      return (mins * 60) + secs;
+    })
+    .reduce((prev, next) => prev + next);
+
+  function time(value) {
+    const hours = Math.floor(value / 3600);
+    const minutes = Math.floor(value % 3600 / 60);
+    const seconds = Math.floor(value % 3600 % 60);
+
+    return (
+      (hours > 0 ? `${hours}:` + (minutes < 10 ? '0' : '') : '') +
+      `${minutes}:` + (seconds < 10 ? '0' : '') + seconds
+    );
+  }
+
+  console.log(time(seconds));
 </script>
 </body>
 </html>

@@ -6,7 +6,6 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <nav>
       <ul class="menu">
         <li><a href="">Home</a></li>
@@ -26,7 +25,20 @@
     </div>
 
   <script>
-    // 👀👀👀👀👀👀👀👀👀👀👀👀👀👀👀
+    const links = document.querySelectorAll('a');
+    const mover = document.createElement('span');
+    mover.classList.add('highlight');
+    document.body.appendChild(mover);
+
+    function highlight() {
+      const { width, height, left: x, top: y } = this.getBoundingClientRect();
+
+      mover.style.width = `${width}px`;
+      mover.style.height = `${height}px`;
+      mover.style.transform = `translate(${x + window.scrollX}px, ${y + window.scrollY}px)`;
+    }
+
+    links.forEach(item => item.addEventListener('mouseenter', highlight));
   </script>
 </body>
 </html>

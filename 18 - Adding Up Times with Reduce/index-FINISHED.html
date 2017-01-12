@@ -174,7 +174,7 @@
     <li data-time="12:39">
       Video 56
     </li>
-    <li data-time="1:56">
+    <li data-time="1:06">
       Video 57
     </li>
     <li data-time="4:04">
@@ -182,7 +182,6 @@
     </li>
 
 <script>
-
   const timeNodes = Array.from(document.querySelectorAll('[data-time]'));
 
   const seconds = timeNodes
@@ -193,15 +192,14 @@
     })
     .reduce((total, vidSeconds) => total + vidSeconds);
 
-    let secondsLeft = seconds;
-    const hours = Math.floor(secondsLeft / 3600);
-    secondsLeft = secondsLeft % 3600;
+  let secondsLeft = seconds;
+  const hours = Math.floor(secondsLeft / 3600);
+  secondsLeft = secondsLeft % 3600;
 
-    const mins = Math.floor(secondsLeft / 60);
-    secondsLeft = secondsLeft % 60;
+  const mins = Math.floor(secondsLeft / 60);
+  secondsLeft = secondsLeft % 60;
 
-    console.log(hours, mins, secondsLeft);
-
+  console.log(hours, mins, secondsLeft);
 </script>
 </body>
 </html>
