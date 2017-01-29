@@ -33,13 +33,13 @@
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.19);
     }
 
-
     .suggestions {
       margin: 0;
       padding: 0;
       position: relative;
-      /*perspective:20px;*/
+      top: 5px;
     }
+
     .suggestions li {
       background:white;
       list-style: none;
