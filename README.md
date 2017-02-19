@@ -8,7 +8,7 @@ Grab the course at [JavaScript30.com](https://JavaScript30.com)
 
 ### Watch demos
 - [Adding Up Times with Reduce](https://yozhezhi.github.io/JavaScript30/Adding%20Up%20Times%20with%20Reduce/index.html)
-- [Ajax Type Ahead](https://yozhezhi.github.io/JavaScript30/Ajax%20Type%20Ahead%20/index.html)
+- [Ajax Type Ahead](https://yozhezhi.github.io/JavaScript30/Ajax%20Type%20Ahead/index.html)
 - [Click and Drag](https://yozhezhi.github.io/JavaScript30/Click%20and%20Drag/index.html)
 - [Countdown Timer](https://yozhezhi.github.io/JavaScript30/Countdown%20Timer/index.html)
 - [CSS Variables](https://yozhezhi.github.io/JavaScript30/CSS%20Variables/index.html)
